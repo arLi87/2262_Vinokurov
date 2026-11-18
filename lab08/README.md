@@ -289,3 +289,132 @@ print(right)
 * Цикл продолжается, пока между `left` и `right` есть хотя бы одно целое число, то есть пока `right - left > 1`.
 * В момент завершения цикла `left` и `right` стоят на соседних числах (`right - left == 1`), причем $t(\text{left}) = \text{False}$, а $t(\text{right}) = \text{True}$.
 * Из этого постусловия следует, что `right` - это первое число $k$, на котором функция становится равной `True`.
+
+# Отчёт по выполненным задачам по python
+
+### 1. Простые числа
+
+```python
+n = int(input())
+
+k = 0
+chislo = 1
+
+while k < n:
+    chislo += 1
+    prostoe = True
+    
+    for i in range(2, int(chislo ** 0.5) + 1):
+        if chislo % i == 0:
+            prostoe = False
+            break
+            
+    if prostoe:
+        k += 1
+
+print(chislo)
+```
+
+### 2. Мама Дяди Федора
+
+```python
+n = int(input())
+platya = list(map(int, input().split()))
+
+byli = []
+otvet = n
+
+for i in range(n):
+    p = platya[i]
+    if p not in byli:
+        byli.append(p)
+    if len(byli) == 3:
+        otvet = i + 1
+        break
+
+print(otvet)
+```
+
+### 3. Удаление буквы
+
+```python
+from string import ascii_lowercase
+
+s = input()
+
+max_k = 0
+bukva = ""
+
+for c in ascii_lowercase:
+    k = s.count(c)
+    if k > max_k:
+        max_k = k
+        bukva = c
+
+otvet = s.replace(bukva, "")
+print(otvet)
+```
+
+### 4. Качество пароля
+
+```python
+r1 = "1234567890"
+r2 = "qwertyuiop"
+r3 = "asdfghjkl"
+r4 = "zxcvbnm"
+
+n = int(input())
+
+for i in range(n):
+    parol = input()
+    
+    f1 = False
+    f2 = False
+    f3 = False
+    f4 = False
+    
+    for c in parol:
+        if c in r1:
+            f1 = True
+        elif c in r2:
+            f2 = True
+        elif c in r3:
+            f3 = True
+        elif c in r4:
+            f4 = True
+            
+    if f1 and f2 and f3 and f4:
+        print("strong")
+    else:
+        print("weak")
+```
+
+### 5. Игра в Дурака
+
+```python
+ves = ["6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+
+kozir = input()
+n = int(input())
+
+otvet = []
+
+for i in range(n):
+    d1, m1 = input().split()
+    d2, m2 = input().split()
+    
+    pobil = False
+    
+    if m1 == m2:
+        if ves.index(d2) > ves.index(d1):
+            pobil = True
+    elif m2 == kozir and m1 != kozir:
+        pobil = True
+        
+    if pobil:
+        otvet.append("1")
+    else:
+        otvet.append("0")
+
+print(" ".join(otvet))
+```
